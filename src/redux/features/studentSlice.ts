@@ -6,7 +6,7 @@ export interface Student {
   name: string;
   cohort: string;
   courses: string[];
-  joined: boolean;
+  joined_date: string;
   last_login: string;
   status: boolean;
 }
@@ -37,14 +37,14 @@ export const addStudent = createAsyncThunk(
   async (student: Omit<Student, "id">) => {
     try {
       const { data, error } = await supabase
-        .from("Students") // Ensure lowercase
+        .from("Students") 
         .insert([student])
         .select();
       if (error) throw error;
       return data[0];
     } catch (error) {
       console.error("Failed to add student:", error);
-      throw error; // Ensure Redux Toolkit can catch and handle the error
+      throw error; 
     }
   }
 );

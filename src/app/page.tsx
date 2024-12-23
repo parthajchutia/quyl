@@ -48,23 +48,19 @@ export default function StudentManagementPage() {
 
       {/* Main Content */}
       <div className="flex-1 ml-64">
-        {/* Navigation */}
         <div className="">
           <Navigation />
         </div>
 
         {/* Main Content Area */}
-        <div className="p-6 ml-4 mt-4 mr-2 rounded-lg bg-white">
-          {/* Filters and Add Button */}
+        <div className="p-6 ml-6 mt-4 mr-2 rounded-lg bg-white">
           <div className="flex justify-between items-center mb-6">
-            {/* Filters */}
             <div className="flex gap-3">
-              {/* Academic Year Dropdown */}
-              <div className="relative">
+              <div className="relative font-bold">
                 <select
                   value={selectedYear}
                   onChange={(e) => handleYearChange(e.target.value)}
-                  className="appearance-none px-4 py-2 pr-8 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[140px]"
+                  className="appearance-none px-4 py-2 pr-8 font-bold bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[140px]"
                 >
                   {academicYears.map((year) => (
                     <option key={year.value} value={year.value}>
@@ -72,15 +68,15 @@ export default function StudentManagementPage() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 font-bold text-gray-500" />
               </div>
 
-              {/* Grade Dropdown */}
+              
               <div className="relative">
                 <select
                   value={selectedGrade}
                   onChange={(e) => handleGradeChange(e.target.value)}
-                  className="appearance-none px-4 py-2 pr-8 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[120px]"
+                  className="appearance-none px-4 py-2 font-bold pr-8 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[120px]"
                 >
                   {grades.map((grade) => (
                     <option key={grade.value} value={grade.value}>
@@ -95,9 +91,9 @@ export default function StudentManagementPage() {
             {/* Add Student Button */}
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="px-4 py-2 bg-gray-100 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition-colors text-gray-700"
+              className="px-4 py-2 font-bold bg-gray-100 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition-colors text-gray-700"
             >
-              <Plus className="w-4 h-4" />
+              <Plus className="w-4 h-5" />
               <span>Add new Student</span>
             </button>
           </div>

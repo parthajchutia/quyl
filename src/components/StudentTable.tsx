@@ -13,8 +13,8 @@ export default function StudentTable() {
     (state: RootState) => state.students
   );
   const subjectIcons: { [key: string]: string } = {
-    math: "/images/subject-icons/math.jpg",
-    science: "/images/subject-icons/science.webp",
+    "CBSE 9 Science": "/images/subject-icons/math.jpg",
+    "CBSE 9 Math": "/images/subject-icons/science.webp",
   };
 
   useEffect(() => {

@@ -1,9 +1,9 @@
 "use client";
 import {
   HelpCircle,
-  Home,
-  Users,
-  BookOpen,
+  CircleGauge,
+  BookOpenText,
+  Album,
   PieChart,
   Settings,
   ChevronRight,
@@ -13,25 +13,27 @@ import Image from "next/image";
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("students");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar toggle state
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  
   const navItems = [
-    { id: "dashboard", icon: Home, label: "Dashboard" },
-    { id: "students", icon: Users, label: "Students" },
-    { id: "chapter", icon: BookOpen, label: "Chapter" },
+    { id: "dashboard", icon: CircleGauge, label: "Dashboard" },
+    { id: "students", icon: BookOpenText, label: "Students" },
+    { id: "chapter", icon: Album, label: "Chapter" },
     { id: "help", icon: HelpCircle, label: "Help" },
     { id: "reports", icon: PieChart, label: "Reports" },
     { id: "settings", icon: Settings, label: "Settings" },
   ];
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
+    <div className="flex  ">
+      
       <div
-        className={`fixed inset-y-0 left-0 bg-white border-r flex flex-col transform transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed inset-y-0 left-0 flex flex-col transform transition-transform duration-300 ${
+          isSidebarOpen ? "translate-x-0 " : " -translate-x-full"
         } lg:translate-x-0 w-64`}
       >
-        <div className="p-6">
+        <div className="p-6 bg-white">
+          {/* Sidebar Header */}
           <div className="flex items-center space-x-2 cursor-pointer">
             <Image
               src="/Vector.png"
@@ -42,6 +44,8 @@ const Sidebar = () => {
             />
           </div>
         </div>
+        
+        {/* Navigation Items */}
         <nav className="flex-1 px-4">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -50,20 +54,20 @@ const Sidebar = () => {
                 key={item.id}
                 className={`flex items-center space-x-3 px-4 py-3 mb-1 rounded-lg transition-colors cursor-pointer ${
                   activeItem === item.id
-                    ? "bg-gray-100 text-blue-600"
-                    : "text-gray-600 hover:bg-gray-50"
+                    ? "bg-white text-gray-950"
+                    : "text-gray-900 hover:bg-gray-500"
                 }`}
                 onClick={() => setActiveItem(item.id)}
               >
                 <Icon
                   size={20}
                   className={
-                    activeItem === item.id ? "text-blue-600" : "text-gray-600"
+                    activeItem === item.id ? "text-gray-950 font-extrabold" : "text-gray-600"
                   }
                 />
                 <span
                   className={`font-medium ${
-                    activeItem === item.id ? "text-blue-600" : ""
+                    activeItem === item.id ? "text-gray-950 font-bold" : ""
                   }`}
                 >
                   {item.label}
@@ -82,7 +86,7 @@ const Sidebar = () => {
         ></div>
       )}
 
-      {/* Hamburger Button */}
+      
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white p-2 rounded-md focus:outline-none"

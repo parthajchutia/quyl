@@ -1,4 +1,5 @@
 "use client";
+
 import {
   HelpCircle,
   CircleGauge,
@@ -11,10 +12,14 @@ import {
 import { useState } from "react";
 import Image from "next/image";
 
-const Sidebar = () => {
+interface SidebarProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [activeItem, setActiveItem] = useState("students");
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  
+
   const navItems = [
     { id: "dashboard", icon: CircleGauge, label: "Dashboard" },
     { id: "students", icon: BookOpenText, label: "Students" },
@@ -25,12 +30,12 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="flex  ">
-      
+    <div className="flex">
+      {/* Sidebar Container */}
       <div
         className={`fixed inset-y-0 left-0 flex flex-col transform transition-transform duration-300 ${
-          isSidebarOpen ? "translate-x-0 " : " -translate-x-full"
-        } lg:translate-x-0 w-64`}
+          isSidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:translate-x-0 w-64 bg-white z-40`}
       >
         <div className="p-6 bg-white">
           {/* Sidebar Header */}
@@ -44,7 +49,7 @@ const Sidebar = () => {
             />
           </div>
         </div>
-        
+
         {/* Navigation Items */}
         <nav className="flex-1 px-4">
           {navItems.map((item) => {
@@ -54,15 +59,17 @@ const Sidebar = () => {
                 key={item.id}
                 className={`flex items-center space-x-3 px-4 py-3 mb-1 rounded-lg transition-colors cursor-pointer ${
                   activeItem === item.id
-                    ? "bg-white text-gray-950"
-                    : "text-gray-900 hover:bg-gray-500"
+                    ? "bg-gray-200 text-gray-950"
+                    : "text-gray-900 hover:bg-gray-100"
                 }`}
                 onClick={() => setActiveItem(item.id)}
               >
                 <Icon
                   size={20}
                   className={
-                    activeItem === item.id ? "text-gray-950 font-extrabold" : "text-gray-600"
+                    activeItem === item.id
+                      ? "text-gray-950 font-extrabold"
+                      : "text-gray-600"
                   }
                 />
                 <span
@@ -86,7 +93,7 @@ const Sidebar = () => {
         ></div>
       )}
 
-      
+      {/* Toggle Button */}
       <button
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 bg-blue-600 text-white p-2 rounded-md focus:outline-none"

@@ -6,7 +6,7 @@ import StudentTable from "../components/StudentTable";
 import Sidebar from "../components/Sidebar";
 import "./globals.css";
 import Navigation from "../components/nav";
-import { ChevronDown, Plus, Menu } from "lucide-react";
+import { ChevronDown, Plus } from "lucide-react";
 
 interface FilterOption {
   label: string;
@@ -40,38 +40,13 @@ export default function StudentManagementPage() {
     setSelectedGrade(value);
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
   return (
     <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
-      <button
-        onClick={toggleSidebar}
-        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-white rounded-lg shadow-lg"
-      >
-        <Menu className="w-6 h-6" />
-      </button>
+      
+      <Sidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
-      <div className= "bg-white">
-        <div
-          className={`${
-            isSidebarOpen ? "translate-x-0" : "-translate-x-full"
-          } md:translate-x-0 fixed md:sticky top-0 h-full w-64 transition-transform duration-300 ease-in-out z-40`}
-        >
-          <Sidebar />
-        </div>
-      </div>
-
-      {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 md:hidden"
-          onClick={toggleSidebar}
-        />
-      )}
-
-      {/* Main Content */}
-      <div className="flex-1 w-full">
+      
+      <div className="flex-1 sm:ml-64 w-full">
         <div>
           <Navigation />
         </div>

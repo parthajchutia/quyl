@@ -15,7 +15,6 @@ interface FilterOption {
 
 export default function StudentManagementPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-
   const [selectedYear, setSelectedYear] = useState("AY 2024-25");
   const [selectedGrade, setSelectedGrade] = useState("CBSE 9");
 
@@ -41,67 +40,74 @@ export default function StudentManagementPage() {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
+    <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <Sidebar />
+      <div className="w-64 fixed h-full bg-white border-r border-gray-200">
+        <Sidebar />
+      </div>
 
       {/* Main Content */}
-      <div className="flex-1">
+      <div className="flex-1 ml-64">
         {/* Navigation */}
-        <div className="flex justify-between items-center p-4 bg-white border-b">
+        <div className="bg-white border-b border-gray-200">
           <Navigation />
         </div>
 
-        {/* Filters and Add Button */}
-        <div className="flex flex-col lg:flex-row items-center justify-between px-6 py-4 gap-4">
-          {/* Filters */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 ml-64 w-full lg:w-auto">
-            {/* Academic Year Dropdown */}
-            <div className="relative inline-block w-full sm:w-auto">
-              <select
-                value={selectedYear}
-                onChange={(e) => handleYearChange(e.target.value)}
-                className="appearance-none px-4 py-2 pr-8 bg-gray-300 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-900 w-full sm:w-auto"
-              >
-                {academicYears.map((year) => (
-                  <option key={year.value} value={year.value}>
-                    {year.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
+        {/* Main Content Area */}
+        <div className="p-6">
+          {/* Filters and Add Button */}
+          <div className="flex justify-between items-center mb-6">
+            {/* Filters */}
+            <div className="flex gap-3">
+              {/* Academic Year Dropdown */}
+              <div className="relative">
+                <select
+                  value={selectedYear}
+                  onChange={(e) => handleYearChange(e.target.value)}
+                  className="appearance-none px-4 py-2 pr-8 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[140px]"
+                >
+                  {academicYears.map((year) => (
+                    <option key={year.value} value={year.value}>
+                      {year.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+              </div>
+
+              {/* Grade Dropdown */}
+              <div className="relative">
+                <select
+                  value={selectedGrade}
+                  onChange={(e) => handleGradeChange(e.target.value)}
+                  className="appearance-none px-4 py-2 pr-8 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-700 min-w-[120px]"
+                >
+                  {grades.map((grade) => (
+                    <option key={grade.value} value={grade.value}>
+                      {grade.label}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500" />
+              </div>
             </div>
 
-            {/* Grade Dropdown */}
-            <div className="relative inline-block w-full sm:w-auto">
-              <select
-                value={selectedGrade}
-                onChange={(e) => handleGradeChange(e.target.value)}
-                className="appearance-none px-4 py-2 pr-8 bg-gray-300 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer text-gray-900 w-full sm:w-auto"
-              >
-                {grades.map((grade) => (
-                  <option key={grade.value} value={grade.value}>
-                    {grade.label}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-500 pointer-events-none" />
-            </div>
+            {/* Add Student Button */}
+            <button
+              onClick={() => setIsAddModalOpen(true)}
+              className="px-4 py-2 bg-gray-100 rounded-lg flex items-center gap-2 hover:bg-gray-200 transition-colors text-gray-700"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Add new Student</span>
+            </button>
           </div>
 
-          {/* Add Student Button */}
-          <button
-            onClick={() => setIsAddModalOpen(true)}
-            className="px-4 py-2 bg-gray-300 border border-gray-200 rounded-lg flex items-center gap-2 transition-colors text-gray-700 w-full sm:w-auto"
-          >
-            <Plus className="w-4 h-4" />
-            <span>Add new Student</span>
-          </button>
-        </div>
-
-        {/* Student Table */}
-        <div className="p-6 overflow-x-auto">
-          <StudentTable />
+          {/* Student Table */}
+          <div className="bg-white rounded-lg shadow">
+            <div className="w-full overflow-x-auto">
+              <StudentTable />
+            </div>
+          </div>
         </div>
       </div>
 

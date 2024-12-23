@@ -1,31 +1,31 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Image from 'next/image';
-import { 
-  Search, 
-  Bell, 
-  Calendar,
-  LayoutGrid,
-  HelpCircle
-} from 'lucide-react';
+import { useState } from "react";
+import Image from "next/image";
+import {
+  Search,
+  Bell,
+  MessageSquareMore,
+  HelpCircle,
+  Settings2,
+} from "lucide-react";
 
 interface NavProps {
   userImage?: string;
   userName?: string;
 }
 
-export default function Navigation({ 
-  userImage = '/User.png',
-  userName = 'Adeline H. Dancy'
+export default function Navigation({
+  userImage = "/User.png",
+  userName = "Adeline H. Dancy",
 }: NavProps) {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
-    <nav className="w-full px-4 sm:px-6 mt-4 bg-white border-b border-gray-200">
+    <nav className="w-full px-4 sm:px-6 mt-4 border-gray-200">
       <div className="flex flex-wrap items-center justify-between gap-y-4">
         {/* Search Section */}
-        <div className="relative flex-1 ml-64 max-w-xl w-full sm:w-auto">
+        <div className="relative flex-1 max-w-1/2  w-1/2 sm:w-auto">
           <div className="absolute inset-y-0 left-0 flex items-center pl-3">
             <Search className="w-5 h-5 text-gray-400" />
           </div>
@@ -46,14 +46,14 @@ export default function Navigation({
             </button>
 
             <button className="relative p-2 hover:bg-gray-100 rounded-lg">
-              <Calendar className="w-6 h-6 text-gray-600" />
+              <MessageSquareMore className="w-6 h-6 text-gray-600" />
               <span className="absolute top-0 right-0 w-4 h-4 bg-red-500 text-white text-xs flex items-center justify-center rounded-full">
                 2
               </span>
             </button>
 
             <button className="relative p-2 hover:bg-gray-100 rounded-lg">
-              <LayoutGrid className="w-6 h-6 text-gray-600" />
+              <Settings2 className="w-6 h-6 text-gray-600" />
             </button>
 
             <button className="relative p-2 hover:bg-gray-100 rounded-lg">

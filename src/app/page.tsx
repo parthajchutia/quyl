@@ -40,7 +40,7 @@ export default function StudentManagementPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div className="w-64 fixed h-full bg-white border-r border-gray-200">
         <Sidebar />
@@ -49,12 +49,12 @@ export default function StudentManagementPage() {
       {/* Main Content */}
       <div className="flex-1 ml-64">
         {/* Navigation */}
-        <div className="bg-white border-b border-gray-200">
+        <div className="">
           <Navigation />
         </div>
 
         {/* Main Content Area */}
-        <div className="p-6">
+        <div className="p-6 ml-4 mt-4 mr-2 rounded-lg bg-white">
           {/* Filters and Add Button */}
           <div className="flex justify-between items-center mb-6">
             {/* Filters */}
